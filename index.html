@@ -7,21 +7,26 @@
      <script type="text/javascript" src="script.js"></script>
      <title>Floyd's Algorithm</title>
 </head>
-<body>
+<body style="font-family: Arial, sans-serif;">
     <h1>Floyd's Algorithm</h1>
     <form>
   <!--     <input type="number" id="noOfEdges"/>
       <br/>-->
       <label for="input">Enter weight matrix:<br/>note: enter inf for &#8734;</label>
       <br/>
-       <textarea id="weightMatrix" rows="5" name="input"></textarea>
+       
+        <textarea id="weightMatrix" rows="4" width:50vw; name="input" style="font-family: Arial, sans-serif; font-size:100%; padding:4%;" ></textarea> 
+      </div>
        <br/>
        <br/>
        <input type="button" onclick="floyds()" value="Find Solution"/>
        <br/>
        <br/>
+       <div id="output" style="opacity:0; ">
        <label for="output">Application of Floyd's algorithm to the digraph:</label>
-       <textarea id="digraphs" rows="30" name="output" readonly></textarea>
+       <div id="digraphs" style="border:1px solid black; width:75vw; padding:4%; word-spacing:10px; " readonly></div>
+     <!--  <textarea id="digraphs" rows="30" name="output" readonly></textarea>-->
+     </div>
      </form>
 </body>
 </html>

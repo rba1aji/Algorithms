@@ -1,8 +1,33 @@
 function floyds() {
-    let result=""+solve(readMatrix());
-	document.getElementById("digraphs").innerHTML = result;
+   let weightMatrix=readMatrix();
+    let result=""+solve(weightMatrix);
+	document.getElementById("digraphs").innerHTML = makeUpdatedBold(result);
+   document.getElementById("output").style.opacity="1";
 }
 
+function makeUpdatedBold(resultString){
+  let result="";
+  let regex= /[D]{1}[(]{1}[0-9]{1}[)]{1}\n/g;
+  let arr=resultString.replaceAll(regex,"").split("\n\n");
+  result+="<u>D(0)\twith\tintermediates: none</u>\n"+arr[0];
+
+  for(let i=1;i<arr.length-1;i++){
+      let cmatrix=arr[i].split(" ");
+      let pmatrix=arr[i-1].split(" ");
+      result+="\n\n<u>D("+i+")\twith\tintermediates: ";
+      for(let z=0;z<i;z++){
+        result+=String.fromCharCode(z+97)+" ";
+        }
+        result+="</u>\n";
+      for(let j=0;j<cmatrix.length;j++){
+        if(cmatrix[j]!=pmatrix[j]){
+          result+=new String(cmatrix[j]).bold()+" ";
+          }
+          else result+=cmatrix[j]+" ";
+        }
+    }
+    return result.replaceAll("\n","<br>");
+  }
 
 
 function solve(weightMatrix) {
@@ -57,7 +82,14 @@ function readMatrix() {
 		let tempArr = [];
 		for (let j = 0; j < n; j++) {
 			if (weightMatrix1D[k] == "inf") tempArr.push(Number.MAX_VALUE);
-			else tempArr.push(parseInt(weightMatrix1D[k]));
+			else{
+               let temp=parseInt(weightMatrix1D[k]);
+               if(Number.isNaN(temp)){
+                    alert("Enter valid weight matrix");
+                    return;
+                   }
+               else tempArr.push(temp);
+               }
 			k++;
 		}
 		weightMatrix.push(tempArr);
