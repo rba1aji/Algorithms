@@ -74,7 +74,8 @@ function printMatrix(arr) {
 
 function readMatrix() {
 	let weightMatrixString = document.getElementById("weightMatrix").value;;
-	const weightMatrix1D = weightMatrixString.replace(/  +/g, ' ').replaceAll("\n", " ") .split(" ");
+	const weightMatrix1D = weightMatrixString.replaceAll("\n", " ").replaceAll(/ +/g, " ").split(" ");
+	//last character need to remove ws
 	let n = Math.sqrt(weightMatrix1D.length);
 	let weightMatrix = [];
 	let k = 0;
