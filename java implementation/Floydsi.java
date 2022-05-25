@@ -94,7 +94,7 @@ class Floyds{
 	}
 	
 }
-public class Main{
+public class Floydsi{
 	public static void main(String[] args) {
 		Floyds ob=new Floyds();
 		ob.readWeightMatrix();
