@@ -1,7 +1,7 @@
 # Algorithms
 ft: Warshall's and Floyd's
 <br>
- Floyds algorithm implementation to find all pairs shortest paths in a weighted graph.
+ algorithm implementation to find all pairs shortest paths in a weighted graph.
 <br/>
 input: weight matrix
 <br/>
