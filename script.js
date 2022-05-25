@@ -86,7 +86,7 @@ function readMatrix() {
 			else{
                let temp=parseInt(weightMatrix1D[k]);
                if(Number.isNaN(temp)){
-                    alert("Enter valid weight matrix");
+                    alert("ENTER VALID WEIGHT MATRIX\ntip:\nmake sure you put inf for infinity\nweight matrix must be square matrix\ntry removing white spaces after last element");
                     return;
                    }
                else tempArr.push(temp);
