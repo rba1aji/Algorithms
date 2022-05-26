@@ -45,7 +45,13 @@ class Knapsack {
      this.resTable=new Array(n);
      this.resString="";
      function parseFun(item){
-     return parseInt(item,10);
+      var val= parseInt(item,10);
+      if(isNaN(val)){
+        alert("Enter valid input");
+        document.getElementById("output").style.height="0";
+          constructor ();
+        }
+      else return val;
        }
      
     }
