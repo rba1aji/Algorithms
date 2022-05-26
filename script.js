@@ -38,10 +38,10 @@ function selectAlgo(){
   
 class Knapsack {
   constructor(n,weight,value,capacity,resTable,resString){
-     this.n=n.split("\n").length+1;
+     this.n=n.replaceAll(/\n+/g,"\n").split("\n").length+1;
      this.weight=weight.split("\n").map(parseFun);
      this.value=value.split("\n").map(parseFun);
-     this.capacity=parseInt(capacity,10)+1;
+     this.capacity=parseInt(capacity,10)+1;//checkNaN
      this.resTable=new Array(n);
      this.resString="";
      function parseFun(item){
@@ -81,7 +81,7 @@ class Knapsack {
       showResult(){
         let s="";
         s+='<table style="table-layout: fixed ; width: 100%; width:80vw; height:40vh; border-collapse: collapse;" id="knapsackTable">';
-         s+='<tr><th style="border:0;" colspan=" '+(this.capacity+1)+' ">Capacity j</th></tr>';
+         s+='<tr><th style="border:0;" colspan=" '+(this.capacity+1)+' "> Capacity j</th></tr>';
         s+='<th>i</th>';
         for(let i=0;i<this.capacity;i++){
           s+="<th>"+i+"</th>";

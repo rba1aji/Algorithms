@@ -7,6 +7,8 @@
      <script type="text/javascript" src="script.js"></script>
      <title>Analysis of Algorithms</title>
 </head>
+
+
 <body style="font-family: Arial, sans-serif;">
   
   
@@ -32,10 +34,10 @@
         <td><label for="knapsackCapacity">capacity</label></td>
        </tr>
         <tr>
-        <td><textarea id="item" name="knapsackItem" rows="6"></textarea></td>
-        <td><textarea id="weight" name="knapsackWeight" rows="6"></textarea></td>
-        <td><textarea id="value" name="knapsackValue" rows="6"></textarea></td>
-        <td><textarea id="capacity" name="knapsackCapacity" rows="6"></textarea></td>
+        <td><textarea id="item" name="knapsackItem" rows="6" required></textarea></td>
+        <td><textarea id="weight" name="knapsackWeight" rows="6" required></textarea></td>
+        <td><textarea id="value" name="knapsackValue" rows="6" required></textarea></td>
+        <td><textarea id="capacity" name="knapsackCapacity" rows="6" required></textarea></td>
         </tr>
       </table>
       <br/>
@@ -75,7 +77,7 @@
       <label for="input">Enter <span id="inputMatrixType"></span> matrix:
       <span id="infinityNote"><br/>note: enter inf for &#8734;</span></label>
       <br/>
-        <textarea id="inputMatrix" rows="4" width:50vw; name="input" style="font-family: Arial, sans-serif; font-size:100%; padding:4%;" ></textarea> 
+        <textarea id="inputMatrix" rows="4" width:50vw; name="input" style="font-family: Arial, sans-serif; font-size:100%; padding:4%;" required></textarea> 
        <br/>
        <br/>
        <input type="button" onclick="warshalls()" value="Find Warshalls Solution" id="warshallsButton"/>
@@ -96,4 +98,10 @@
      
      
 </body>
+
+
+<!-- <footer style="position: absolute; margin-top:99vh;">
+       ©oded by rba1aji
+     </footer>-->
+
 </html>
