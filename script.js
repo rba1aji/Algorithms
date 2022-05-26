@@ -118,10 +118,10 @@ class Knapsack {
   
 function knapsack(){
   //input debugging purpose
-  document.getElementById("item").value="1\n2\n3\n4";
+/*  document.getElementById("item").value="1\n2\n3\n4";
   document.getElementById("weight").value="2\n1\n3\n2";
   document.getElementById("value").value="12\n10\n20\n15";
-  //document.getElementById("capacity").value="5";
+  //document.getElementById("capacity").value="5";*/
 
 
   document.getElementById("output").style.height="100%";
