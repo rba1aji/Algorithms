@@ -1,15 +1,20 @@
 function selectAlgo(){
   //alert(1);
 //  document.getElementById("input").style.opacity="1";
-  document.getElementById("inputMatrix").value="";
+document.getElementById("inputMatrix").value=""; 
+document.getElementById("item").value="";
+document.getElementById("weight").value="";
+document.getElementById("value").value="";
+document.getElementById("capacity").value="";//making textarea empty
+  
   document.getElementById("output").style.height="0";
   let selected=""+document.getElementById("algoSelection").value;
  // alert(selected);
- if(selected=="default"){   /////////////
+ if(selected=="default"){   
    document.getElementById("input").style.height="0";
    document.getElementById("knapsackInput").style.height="0";
    }
-  else if(selected=="warshalls"){  ////////////
+  else if(selected=="warshalls"){ 
         document.getElementById("knapsackInput").style.height="0";
         document.getElementById("input").style.height="auto";
     document.getElementById("algoType").innerHTML="Warshall's";
@@ -19,7 +24,7 @@ function selectAlgo(){
    document.getElementById("warshallsButton").style.cssText="auto";
    document.getElementById("floydsButton").style.cssText="width:0; font-size:0; opacity:0";
     }
-    else if(selected=="floyds"){  ///////////
+    else if(selected=="floyds"){ 
       document.getElementById("knapsackInput").style.height="0";
         document.getElementById("input").style.height="auto";
         document.getElementById("algoType").innerHTML="Floyd's";
@@ -29,7 +34,7 @@ function selectAlgo(){
    document.getElementById("floydsButton").style.cssText="auto";
    document.getElementById("warshallsButton").style.cssText="width:0; font-size:0; opacity:0";
       }
-      else if(selected=="knapsack"){  ////////////
+      else if(selected=="knapsack"){ 
         document.getElementById("input").style.height="0";
         document.getElementById("knapsackInput").style.height="auto";
         }
@@ -103,10 +108,10 @@ class Knapsack {
   
 function knapsack(){
   //input debugging purpose
-  /*document.getElementById("item").innerHTML="1\n2\n3\n4";
-  document.getElementById("weight").innerHTML="2\n1\n3\n2";
-  document.getElementById("value").innerHTML="12\n10\n20\n15";
-  document.getElementById("capacity").innerHTML="5";*/
+  //document.getElementById("item").innerHTML="1\n2\n3\n4";
+//  document.getElementById("weight").innerHTML="2\n1\n3\n2";
+ // document.getElementById("value").innerHTML="12\n10\n20\n15";
+//  document.getElementById("capacity").innerHTML="5";
 
 
   document.getElementById("output").style.height="100%";
