@@ -14,22 +14,62 @@
     <label for="select">Select algorithm</label>
       <select name="select" id="algoSelection" onchange="selectAlgo()">
         <option value="default" selected>select</option>
+        <option value="knapsack">Knapsack problem</option>
         <option value="warshalls">Warshalls's Algorithm</option>
         <option value="floyds">Floyd's Algorithm</option>
       </select>
     </form>
     
     
+    <div id="knapsackInput" style="height:0;">
+      <h1>Knapsack problem</h1>
+      Enter the inputs in vertical order:
+      <table>
+       <tr>
+        <td><label for="knapsackItem">item</label></td>
+        <td><label for="knapsackWeight">weight</label></td>
+        <td><label for="knapsackValue">value</label></td>
+        <td><label for="knapsackCapacity">capacity</label></td>
+       </tr>
+        <tr>
+        <td><textarea id="item" name="knapsackItem" rows="6"></textarea></td>
+        <td><textarea id="weight" name="knapsackWeight" rows="6"></textarea></td>
+        <td><textarea id="value" name="knapsackValue" rows="6"></textarea></td>
+        <td><textarea id="capacity" name="knapsackCapacity" rows="6"></textarea></td>
+        </tr>
+      </table>
+      <br/>
+      <input type="button" onclick="knapsack()" value="Find Knapsack Solution" id="knapsackButton" />
+    </div>
     
-    <div id="input" style="opacity:0;">
-    <h1><span id="algoType"></span> Algorithm</h1>
+<style>
+  div{
+    overflow:hidden;
+    }
+  #knapsackInput td textarea{
+    width:22vw;
+    text-align:center;
+    padding:4%;
+   font-family: Arial, sans-serif; 
+   font-size:100%;
+   border:none;
+    }
+    #knapsackInput table,td{
+      text-align:center;
+      border:1px solid black;
+     border-collapse: collapse;
+      }
+</style>
+    
+    
+    <div id="input" style="height:0;">
+    <h1><span id="algoType"></span> algorithm</h1>
     <form>
   <!--     <input type="number" id="noOfEdges"/>
       <br/>-->
       <label for="input">Enter <span id="inputMatrixType"></span> matrix:
       <span id="infinityNote"><br/>note: enter inf for &#8734;</span></label>
       <br/>
-      
         <textarea id="inputMatrix" rows="4" width:50vw; name="input" style="font-family: Arial, sans-serif; font-size:100%; padding:4%;" ></textarea> 
        <br/>
        <br/>
@@ -41,11 +81,14 @@
        
        
        
-       <div id="output" style="opacity:0; ">
-       <label for="output">Application of <span id="algoType"></span> algorithm to the digraph:</label>
+       <div id="output" style="height:0; ">
+       <label for="output" id="outputDescription">
+       </label>
        <div id="digraphs" style="border:1px solid black; width:75vw; padding:4%; word-spacing:10px; " readonly></div>
      <!--  <textarea id="digraphs" rows="30" name="output" readonly></textarea>-->
      </div>
      </form>
+     
+     
 </body>
 </html>

@@ -1,28 +1,117 @@
 function selectAlgo(){
   //alert(1);
-  document.getElementById("input").style.opacity="1";
+//  document.getElementById("input").style.opacity="1";
   document.getElementById("inputMatrix").value="";
-  document.getElementById("output").style.opacity="0";
+  document.getElementById("output").style.height="0";
   let selected=""+document.getElementById("algoSelection").value;
  // alert(selected);
- if(selected=="default"){
-   document.getElementById("input").style.opacity="0";
+ if(selected=="default"){   /////////////
+   document.getElementById("input").style.height="0";
+   document.getElementById("knapsackInput").style.height="0";
    }
-  else if(selected=="warshalls"){
+  else if(selected=="warshalls"){  ////////////
+        document.getElementById("knapsackInput").style.height="0";
+        document.getElementById("input").style.height="auto";
     document.getElementById("algoType").innerHTML="Warshall's";
+    document.getElementById("outputDescription").innerHTML="Application of Warshall's algorithm to the digraph:";
   document.getElementById("inputMatrixType").innerHTML="adjacency";
    document.getElementById("infinityNote").innerHTML="";
    document.getElementById("warshallsButton").style.cssText="auto";
    document.getElementById("floydsButton").style.cssText="width:0; font-size:0; opacity:0";
     }
-    else if(selected=="floyds"){
-      document.getElementById("algoType").innerHTML="Floyd's";
+    else if(selected=="floyds"){  ///////////
+      document.getElementById("knapsackInput").style.height="0";
+        document.getElementById("input").style.height="auto";
+        document.getElementById("algoType").innerHTML="Floyd's";
+         document.getElementById("outputDescription").innerHTML="Application of Floyd's algorithm to the digraph:";
    document.getElementById("inputMatrixType").innerHTML="weight";
    document.getElementById("infinityNote").innerHTML="<br/>note: enter inf for &#8734;";
    document.getElementById("floydsButton").style.cssText="auto";
    document.getElementById("warshallsButton").style.cssText="width:0; font-size:0; opacity:0";
       }
+      else if(selected=="knapsack"){  ////////////
+        document.getElementById("input").style.height="0";
+        document.getElementById("knapsackInput").style.height="auto";
+        }
   }
+  
+  
+class Knapsack {
+  constructor(n,weight,value,capacity,resTable,resString){
+     this.n=n.split("\n").length+1;
+     this.weight=weight.split("\n").map(parseFun);
+     this.value=value.split("\n").map(parseFun);
+     this.capacity=parseInt(capacity,10)+1;
+     this.resTable=new Array(n);
+     this.resString="";
+     function parseFun(item){
+     return parseInt(item,10);
+       }
+     
+    }
+    solve(){
+      for(let i=0;i<this.n;i++){
+        this.resTable[i]=new Array(this.capacity);
+        }
+   //   alert(this.n+" \n"+this.weight+"\n"+this.value+"\n"+this.capacity+"\n"+this.resTable);
+         for(let i=0;i<this.n;i++){
+           for(let j=0;j<this.capacity;j++){
+             let val=0;
+             if(i==0||j==0){
+					val=0;
+				}
+		     else if(j<this.weight[i-1]){
+					val=this.resTable[i-1][j];
+						}
+		     else{
+					val=Math.max(this.resTable[i-1][j],this.value[i-1]+this.resTable[i-1][j-this.weight[i-1]]);
+					}
+					this.resTable[i][j]=val;
+             
+             }
+           }
+  //       alert(this.n+" \n"+this.weight+"\n"+this.value+"\n"+this.capacity+"\n"+this.resTable);
+      }
+      showResult(){
+        let s="";
+        s+='<table style="width:80vw; height:40vh; border-collapse: collapse;" id="knapsackTable">';
+         s+='<tr><th style="border:0;" colspan=" '+(this.capacity+1)+' ">Capacity j</th></tr>';
+        s+='<th>i</th>';
+        for(let i=0;i<this.capacity;i++){
+          s+="<th>"+i+"</th>";
+          }
+        for(let i=0;i<this.n;i++){
+          s+="<tr><th>"+i+"</th>";
+          for(let j=0;j<this.capacity;j++){
+            s+="<td>"+this.resTable[i][j]+"</td>";
+            }
+            s+="</tr>";
+          }
+          s+="</table><br/><br/>";
+          s+="<style>  #knapsackTable th{  border:2px solid black;       border-collapse: collapse;    }    </style>";
+          this.resString=s;
+   //     alert(this.resString);
+          document.getElementById("digraphs").innerHTML=this.resString;
+        }
+  }
+  
+function knapsack(){
+  //input debugging purpose
+  /*document.getElementById("item").innerHTML="1\n2\n3\n4";
+  document.getElementById("weight").innerHTML="2\n1\n3\n2";
+  document.getElementById("value").innerHTML="12\n10\n20\n15";
+  document.getElementById("capacity").innerHTML="5";*/
+
+
+  document.getElementById("output").style.height="100%";
+  document.getElementById("outputDescription"). innerHTML="<br>Solution of Knapsack problem by dynamic programming algorithm:";
+  document.getElementById("digraphs").style.width="85vw";
+  let ob=new Knapsack(document.getElementById("item").value,document.getElementById("weight").value, document.getElementById("value").value, document.getElementById("capacity").value);
+  ob.solve();
+  ob.showResult();
+  }
+  
+  
 function warshalls(){
   let adjacencyMatrix=readAdjacencyMatrix();
  // alert(adjacencyMatrix);
@@ -30,13 +119,13 @@ function warshalls(){
   //alert(result);
   document.getElementById("digraphs").innerHTML=makeUpdatedBold(result,"R");
   //alert(result);
-  document.getElementById("output").style.opacity="1";
+  document.getElementById("output").style.height="100%";
   }
 function floyds() {
    let weightMatrix=readWeightMatrix();
     let result=""+floydsSolve(weightMatrix);
 	document.getElementById("digraphs").innerHTML = makeUpdatedBold(result,"D");
-   document.getElementById("output").style.opacity="1";
+   document.getElementById("output").style.height="100%";
 }
 
 function makeUpdatedBold(resultString,flag){
@@ -149,7 +238,7 @@ function readAdjacencyMatrix(){
                let temp=parseInt(adjacencyMatrix1D[k++]);
                if(Number.isNaN(temp)||temp>1){
                     alert("ENTER VALID ADJACENCY MATRIX\ntip:\nadjacency matrix can only contain 0s and 1s\nadjacency matrix must be square matrix\ntry removing white spaces after last element");
-                    document.getElementById("output").style.opacity="0";
+                    document.getElementById("output").style.height="0";
                     return;
                    }
                else tempArr.push(temp);
@@ -174,7 +263,7 @@ function readWeightMatrix() {
                let temp=parseInt(weightMatrix1D[k]);
                if(Number.isNaN(temp)){
                     alert("ENTER VALID WEIGHT MATRIX\ntip:\nmake sure you put inf for infinity\nweight matrix must be square matrix\ntry removing white spaces after last element");
-document.getElementById("output").style.opacity="0";
+document.getElementById("output").style.height="0";
                     return;
                    }
                else tempArr.push(temp);
