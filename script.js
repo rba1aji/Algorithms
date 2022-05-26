@@ -114,7 +114,7 @@ class Knapsack {
           s+="<style>  #knapsackTable th{ border:2px solid black;       border-collapse: collapse;  width:auto; } #knapsackTable td{width:auto;  }  </style>";
           this.resString=s;
    //     alert(this.resString);
-          document.getElementById("digraphs").innerHTML=this.resString;
+          document.getElementById("resultBox").innerHTML=this.resString;
         }
   }
   
@@ -128,7 +128,7 @@ function knapsack(){
 
   document.getElementById("output").style.height="100%";
   document.getElementById("outputDescription"). innerHTML="<br>Solution of Knapsack problem by dynamic programming algorithm:";
-  document.getElementById("digraphs").style.width="85vw";
+  document.getElementById("resultBox").style.width="85vw";
   let ob=new Knapsack(document.getElementById("item").value,document.getElementById("weight").value, document.getElementById("value").value, document.getElementById("capacity").value);
   ob.solve();
   ob.showResult();
@@ -140,14 +140,14 @@ function warshalls(){
  // alert(adjacencyMatrix);
   let result=""+warshallsSolve(adjacencyMatrix);
   //alert(result);
-  document.getElementById("digraphs").innerHTML=makeUpdatedBold(result,"R");
+  document.getElementById("resultBox").innerHTML=makeUpdatedBold(result,"R");
   //alert(result);
   document.getElementById("output").style.height="100%";
   }
 function floyds() {
    let weightMatrix=readWeightMatrix();
     let result=""+floydsSolve(weightMatrix);
-	document.getElementById("digraphs").innerHTML = makeUpdatedBold(result,"D");
+	document.getElementById("resultBox").innerHTML = makeUpdatedBold(result,"D");
    document.getElementById("output").style.height="100%";
 }
 
