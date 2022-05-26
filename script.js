@@ -42,8 +42,10 @@ document.getElementById("capacity").value="";//making textarea empty
   
   
 class Knapsack {
-  constructor(n,weight,value,capacity,resTable,resString,max_i,max_j){
-     this.n=n.replaceAll(/\n+/g,"\n").split("\n").length+1;
+  constructor(item,weight,value,capacity,n,resTable,resString,max_i,max_j){
+    //replaceAll(/\n+/g,"\n").
+     this.item=("0\n"+item).split("\n").map(parseFun);
+     this.n=item.split("\n").length+1;
      this.weight=weight.split("\n").map(parseFun);
      this.value=value.split("\n").map(parseFun);
      this.capacity=parseInt(capacity,10)+1;//checkNaN
@@ -99,7 +101,7 @@ class Knapsack {
           s+="<th>"+i+"</th>";
           }
         for(let i=0;i<this.n;i++){
-          s+="<tr><th>"+i+"</th>";
+          s+="<tr><th>"+this.item[i]+"</th>";
           for(let j=0;j<this.capacity;j++){
             if(i==this.max_i&&j==this.max_j){
               s+="<td><b>"+this.resTable[i][j]+"</b></td>";
@@ -118,10 +120,10 @@ class Knapsack {
   
 function knapsack(){
   //input debugging purpose
-/*  document.getElementById("item").value="1\n2\n3\n4";
+  document.getElementById("item").value="1\n2\n3\n4";
   document.getElementById("weight").value="2\n1\n3\n2";
   document.getElementById("value").value="12\n10\n20\n15";
-  //document.getElementById("capacity").value="5";*/
+  //document.getElementById("capacity").value="5";
 
 
   document.getElementById("output").style.height="100%";
