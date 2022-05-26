@@ -42,13 +42,15 @@ document.getElementById("capacity").value="";//making textarea empty
   
   
 class Knapsack {
-  constructor(n,weight,value,capacity,resTable,resString){
+  constructor(n,weight,value,capacity,resTable,resString,max_i,max_j){
      this.n=n.replaceAll(/\n+/g,"\n").split("\n").length+1;
      this.weight=weight.split("\n").map(parseFun);
      this.value=value.split("\n").map(parseFun);
      this.capacity=parseInt(capacity,10)+1;//checkNaN
      this.resTable=new Array(n);
      this.resString="";
+     this.max_i=0;
+     this.max_j=0;
      function parseFun(item){
       var val= parseInt(item,10);
       if(isNaN(val)){
@@ -61,6 +63,7 @@ class Knapsack {
      
     }
     solve(){
+      let max=0;
       for(let i=0;i<this.n;i++){
         this.resTable[i]=new Array(this.capacity);
         }
@@ -78,14 +81,18 @@ class Knapsack {
 					val=Math.max(this.resTable[i-1][j],this.value[i-1]+this.resTable[i-1][j-this.weight[i-1]]);
 					}
 					this.resTable[i][j]=val;
-             
+                    if(max<=val){
+                      max=val;
+                      this.max_i=i;
+                      this.max_j=j;
+                      }
              }
            }
   //       alert(this.n+" \n"+this.weight+"\n"+this.value+"\n"+this.capacity+"\n"+this.resTable);
       }
       showResult(){
         let s="";
-        s+='<table style="table-layout: fixed ; width: 100%; width:80vw; height:40vh; border-collapse: collapse;" id="knapsackTable">';
+        s+='<table style=" width:100%; height:40vh; border-collapse: collapse;  overflow-x:auto; " id="knapsackTable">';
          s+='<tr><th style="border:0;" colspan=" '+(this.capacity+1)+' "> Capacity j</th></tr>';
         s+='<th>i</th>';
         for(let i=0;i<this.capacity;i++){
@@ -94,12 +101,15 @@ class Knapsack {
         for(let i=0;i<this.n;i++){
           s+="<tr><th>"+i+"</th>";
           for(let j=0;j<this.capacity;j++){
-            s+="<td>"+this.resTable[i][j]+"</td>";
+            if(i==this.max_i&&j==this.max_j){
+              s+="<td><b>"+this.resTable[i][j]+"</b></td>";
+              }
+            else s+="<td>"+this.resTable[i][j]+"</td>";
             }
             s+="</tr>";
           }
           s+="</table><br/><br/>";
-          s+="<style>  #knapsackTable th{  width:50%; border:2px solid black;       border-collapse: collapse;    }    </style>";
+          s+="<style>  #knapsackTable th{ border:2px solid black;       border-collapse: collapse;  width:auto; } #knapsackTable td{width:auto;  }  </style>";
           this.resString=s;
    //     alert(this.resString);
           document.getElementById("digraphs").innerHTML=this.resString;
@@ -108,10 +118,10 @@ class Knapsack {
   
 function knapsack(){
   //input debugging purpose
-  //document.getElementById("item").innerHTML="1\n2\n3\n4";
-//  document.getElementById("weight").innerHTML="2\n1\n3\n2";
- // document.getElementById("value").innerHTML="12\n10\n20\n15";
-//  document.getElementById("capacity").innerHTML="5";
+  document.getElementById("item").value="1\n2\n3\n4";
+  document.getElementById("weight").value="2\n1\n3\n2";
+  document.getElementById("value").value="12\n10\n20\n15";
+  //document.getElementById("capacity").value="5";
 
 
   document.getElementById("output").style.height="100%";
