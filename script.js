@@ -80,7 +80,7 @@ class Knapsack {
       }
       showResult(){
         let s="";
-        s+='<table style="width:80vw; height:40vh; border-collapse: collapse;" id="knapsackTable">';
+        s+='<table style="table-layout: fixed ; width: 100%; width:80vw; height:40vh; border-collapse: collapse;" id="knapsackTable">';
          s+='<tr><th style="border:0;" colspan=" '+(this.capacity+1)+' ">Capacity j</th></tr>';
         s+='<th>i</th>';
         for(let i=0;i<this.capacity;i++){
@@ -94,7 +94,7 @@ class Knapsack {
             s+="</tr>";
           }
           s+="</table><br/><br/>";
-          s+="<style>  #knapsackTable th{  border:2px solid black;       border-collapse: collapse;    }    </style>";
+          s+="<style>  #knapsackTable th{  width:50%; border:2px solid black;       border-collapse: collapse;    }    </style>";
           this.resString=s;
    //     alert(this.resString);
           document.getElementById("digraphs").innerHTML=this.resString;
