@@ -1,6 +1,8 @@
+//console.log(1);
+//debugger;
 function selectAlgo(){
-  //alert(1);
 //  document.getElementById("input").style.opacity="1";
+document.getElementById("inputMatrix").rows="4";
 document.getElementById("inputMatrix").value=""; 
 document.getElementById("item").value="";
 document.getElementById("weight").value="";
@@ -21,8 +23,10 @@ document.getElementById("capacity").value="";//making textarea empty
     document.getElementById("outputDescription").innerHTML="Application of Warshall's algorithm to the digraph:";
   document.getElementById("inputMatrixType").innerHTML="adjacency";
    document.getElementById("infinityNote").innerHTML="";
-   document.getElementById("warshallsButton").style.cssText="auto";
-   document.getElementById("floydsButton").style.cssText="width:0; font-size:0; opacity:0";
+   document.getElementById("warshallsButton").innerHTML='<input type="button" value="Find Warshalls Solution" onclick="warshalls()"></input>';
+   document.getElementById("floydsButton").innerHTML="";
+   document.getElementById("primsButton").innerHTML="";
+
     }
     else if(selected=="floyds"){ 
       document.getElementById("knapsackInput").style.height="0";
@@ -31,18 +35,37 @@ document.getElementById("capacity").value="";//making textarea empty
          document.getElementById("outputDescription").innerHTML="Application of Floyd's algorithm to the digraph:";
    document.getElementById("inputMatrixType").innerHTML="weight";
    document.getElementById("infinityNote").innerHTML="<br/>note: enter inf for &#8734;";
-   document.getElementById("floydsButton").style.cssText="auto";
-   document.getElementById("warshallsButton").style.cssText="width:0; font-size:0; opacity:0";
+   document.getElementById("floydsButton"). innerHTML='<input type="button" value="Find Floyds Solution" onclick="floyds()"></input>';
+   document.getElementById("warshallsButton"). innerHTML="";
+   document.getElementById("primsButton").innerHTML="";
+
       }
       else if(selected=="knapsack"){ 
         document.getElementById("input").style.height="0";
         document.getElementById("knapsackInput").style.height="auto";
         }
+        else if(selected=="prims"){
+      document.getElementById("inputMatrix").rows="6";
+          document.getElementById("input").style.height="auto";
+          document.getElementById("knapsackInput").style.height="0";
+          document.getElementById("algoType").innerHTML="Prim's";
+          document.getElementById("outputDescription").innerHTML="Application of Floyd's algorithm to the digraph:";
+   document.getElementById("inputMatrixType").innerHTML="weight";
+   document.getElementById("infinityNote").innerHTML="<br/>note: enter inf for &#8734;";
+   document.getElementById("primsButton").innerHTML='<input type="button" value="Find Prims Solution" onclick="prims()"></input>';
+   document.getElementById("warshallsButton"). innerHTML="";
+    document.getElementById("floydsButton"). innerHTML="";
+     document.getElementById("outputDescription").innerHTML="Application of Prim's algorithm:";
+          }
   }
   
   
+  
 class Knapsack {
-  constructor(item,weight,value,capacity,n,resTable,resString,max_i,max_j){
+  constructor(
+       item,weight,value, 
+       capacity,n,resTable,resString,
+       max_i,max_j  ){
     //replaceAll(/\n+/g,"\n").
      this.item=("0\n"+item).split("\n").map(parseFun);
      this.n=item.split("\n").length+1;
@@ -95,7 +118,7 @@ class Knapsack {
       showResult(){
         let s="";
         s+='<table style=" width:100%; height:40vh; border-collapse: collapse;  overflow-x:auto; " id="knapsackTable">';
-         s+='<tr><th style="border:0;" colspan=" '+(this.capacity+1)+' "> Capacity j</th></tr>';
+         s+='<tr><th style="border:0;"> </th><th style="border:0;" colspan=" '+(this.capacity)+' "> Capacity j</th></tr>';
         s+='<th>i</th>';
         for(let i=0;i<this.capacity;i++){
           s+="<th>"+i+"</th>";
@@ -297,3 +320,37 @@ document.getElementById("output").style.height="0";
 	}
 	return weightMatrix;
 }
+
+class Prims{
+  constructor(
+        inf ,  weightMatrix, n, selected, 
+        applicationStr, totMinCost,
+        connection, result){ 
+        this.inf=Number.MAX_VALUE;
+        this.weightMatrix=readWeightMatrix();
+        this.n=this.weightMatrix.length;
+        this.selected=new Map();
+        this.applicationStr="";
+        this.totMinCost=0;
+        this.connection=[];
+        this.result="";
+        for(let i=0;i<this.n;i++){
+          this.selected.set(i,false);
+          }
+   }
+   solve(){
+     this.selected.set(0,false);
+     }
+}
+
+function prims(){
+  //debugg input
+    document.getElementById("inputMatrix").value="0 3 inf inf 6 5\n3 0 1 inf inf 4\ninf 1 0 6 inf 4\ninf inf 6 0 8 inf\n6 inf inf 8 inf 2\n5 4 4 5 2 0";
+   document.getElementById("output").style.height="100%";
+  let ob=new Prims();
+  ob.solve();
+        //  alert (0);        
+      //    alert (ob.selected.get(0));
+  document.getElementById("resultBox").innerHTML=ob.result; 
+ 
+  }

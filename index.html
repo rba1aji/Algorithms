@@ -11,7 +11,7 @@
 
 <body style="font-family: Arial, sans-serif;">
   
-  
+  <!-----🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾SELECT🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾------>    
     <form>
     <label for="select">Select algorithm</label>
       <select name="select" id="algoSelection" onchange="selectAlgo()">
@@ -19,9 +19,10 @@
         <option value="knapsack">Knapsack problem</option>
         <option value="warshalls">Warshalls's algorithm</option>
         <option value="floyds">Floyd's algorithm</option>
+        <option value="prims">Prim's algorithm</option>
       </select>
     </form>
-    
+    <!-----🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾KNAPSACKINPUT🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾------>    
     
     <div id="knapsackInput" style="height:0;">
       <h1>Knapsack problem</h1>
@@ -67,7 +68,7 @@
         overflow: scroll;
         }
 </style>
-    
+<!-----🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾WARSHALLSFLOYDSINPUT🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾------>    
     
     <div id="input" style="height:0;">
     <h1><span id="algoType"></span> algorithm</h1>
@@ -80,14 +81,17 @@
         <textarea id="inputMatrix" rows="4" width:50vw; name="input" style="font-family: Arial, sans-serif; font-size:100%; padding:4%;" required></textarea> 
        <br/>
        <br/>
-       <input type="button" onclick="warshalls()" value="Find Warshalls Solution" id="warshallsButton"/>
-       <input type="button" onclick="floyds()" value="Find Floyds Solution" id="floydsButton" />
+       <span id="warshallsButton"></span>
+       <span id="floydsButton"></span>
+       <span id="primsButton"></span>
        <br/>
        </div>
+      </form>
        
        
+  <!-----🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾OUTPUT🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾🍾------>         
        
-       
+       <form>
        <div id="output" style="height:0; ">
        <label for="output" id="outputDescription">
        </label>
