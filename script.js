@@ -1,6 +1,6 @@
 //console.log(1);
 //debugger;
-function selectAlgo(){
+selectAlgo=()=>{
 //  document.getElementById("input").style.opacity="1";
 document.getElementById("inputMatrix").rows="4";
 document.getElementById("inputMatrix").value=""; 
@@ -87,7 +87,7 @@ class Knapsack {
        }
      
     }
-    solve(){
+    solve=()=>{
       let max=0;
       for(let i=0;i<this.n;i++){
         this.resTable[i]=new Array(this.capacity);
@@ -115,7 +115,7 @@ class Knapsack {
            }
   //       alert(this.n+" \n"+this.weight+"\n"+this.value+"\n"+this.capacity+"\n"+this.resTable);
       }
-      showResult(){
+      showResult=()=>{
         let s="";
         s+='<table style=" width:100%; height:40vh; border-collapse: collapse;  overflow-x:auto; " id="knapsackTable">';
          s+='<tr><th style="border:0;"> </th><th style="border:0;" colspan=" '+(this.capacity)+' "> Capacity j</th></tr>';
@@ -141,7 +141,7 @@ class Knapsack {
         }
   }
   
-function knapsack(){
+ knapsack=()=>{
   //input debugging purpose
 /*  document.getElementById("item").value="1\n2\n3\n4";
   document.getElementById("weight").value="2\n1\n3\n2";
@@ -158,23 +158,23 @@ function knapsack(){
   }
   
   
-function warshalls(){
+ warshalls=()=>{
   let adjacencyMatrix=readAdjacencyMatrix();
  // alert(adjacencyMatrix);
   let result=""+warshallsSolve(adjacencyMatrix);
   //alert(result);
+  document.getElementById("output").style.height="100%";
   document.getElementById("resultBox").innerHTML=makeUpdatedBold(result,"R");
   //alert(result);
-  document.getElementById("output").style.height="100%";
   }
-function floyds() {
+floyds=() =>{
    let weightMatrix=readWeightMatrix();
     let result=""+floydsSolve(weightMatrix);
+    document.getElementById("output").style.height="100%";
 	document.getElementById("resultBox").innerHTML = makeUpdatedBold(result,"D");
-   document.getElementById("output").style.height="100%";
 }
 
-function makeUpdatedBold(resultString,flag){
+makeUpdatedBold=(resultString,flag)=>{
   let result="";
   let regex= /[DR]{1}[(]{1}[0-9]{1}[)]{1}\n/g;
   let arr=resultString.replaceAll(regex,"").split("\n\n");
@@ -200,7 +200,7 @@ function makeUpdatedBold(resultString,flag){
   }
 
 
-function warshallsSolve(adjacencyMatrix){
+warshallsSolve = (adjacencyMatrix) => {
   let digraphs = "";
 	let n = adjacencyMatrix.length;
 	let intermediate = [];
@@ -230,7 +230,7 @@ function warshallsSolve(adjacencyMatrix){
 	return digraphs;
   }
 
-function floydsSolve(weightMatrix) {
+floydsSolve = (weightMatrix) => {
 	let digraphs = "";
 	let n = weightMatrix.length;
 	let intermediate = [];
@@ -260,7 +260,7 @@ function floydsSolve(weightMatrix) {
 	return digraphs;
 }
 
-function printMatrix(arr) {
+printMatrix = (arr) => {
 	let result = "";
 	for (let i = 0; i < arr.length; i++) {
 		for (let j = 0; j < arr[i].length; j++) {
@@ -272,7 +272,7 @@ function printMatrix(arr) {
 	return result;
 }
 
-function readAdjacencyMatrix(){
+readAdjacencyMatrix = () => {
   let adjacencyMatrixString=document.getElementById("inputMatrix").value;
   const adjacencyMatrix1D=adjacencyMatrixString.replaceAll("\n", " ").replaceAll(/ +/g, " ").split(" ");
   let n=Math.sqrt(adjacencyMatrix1D.length);
@@ -294,7 +294,7 @@ function readAdjacencyMatrix(){
     return adjacencyMatrix;
   }
 
-function readWeightMatrix() {
+readWeightMatrix=()=>{
 	let weightMatrixString = document.getElementById("inputMatrix").value;
 	const weightMatrix1D = weightMatrixString.replaceAll("\n", " ").replaceAll(/ +/g, " ").split(" ");
 	//last character need to remove ws
@@ -338,12 +338,23 @@ class Prims{
           this.selected.set(i,false);
           }
    }
-   solve(){
+   solve=()=>{
      this.selected.set(0,false);
+     let s=`<tabel>
+             <tr>
+              <th>Tree vertices</th> 
+              <th>Remaining vertices</th>
+              <th>Graph paths</th>
+             </tr>`;
+        s+=`<tr><td>{String.fromCharCode(0+97)}(-,-)</td>`;
+        let NoOfEdges=n-1;
+        while(noOfEdges--){
+          
+          }
      }
 }
 
-function prims(){
+prims=()=>{
   //debugg input
     document.getElementById("inputMatrix").value="0 3 inf inf 6 5\n3 0 1 inf inf 4\ninf 1 0 6 inf 4\ninf inf 6 0 8 inf\n6 inf inf 8 inf 2\n5 4 4 5 2 0";
    document.getElementById("output").style.height="100%";
