@@ -336,21 +336,49 @@ class Prims {
     this.result = "";
     for (let i = 0; i < this.n; i++) {
       this.selected.set(i, false);
+    //  this.connection[i]=0;
     }
   }
   solve = () => {
     this.selected.set(0, false);
-    let s = `<tabel>
-             <tr>
-              <th>Tree vertices</th> 
-              <th>Remaining vertices</th>
-              <th>Graph paths</th>
-             </tr>`;
-    s += `<tr><td>{String.fromCharCode(0+97)}(-,-)</td>`;
-    let NoOfEdges = n - 1;
+    //  alert(0);
+    let s = `<table style=" width:100%; height:40vh; border-collapse: collapse;  overflow-x:auto; ">     <tr> <th>Tree vertices</th>    <th>Remaining vertices</th>   <th>Graph paths</th></tr>`;
+    s += `<tr><td>${String.fromCharCode(0 + 97)}(-,-)</td>`;
+    var noOfEdges = this.n - 1;
     while (noOfEdges--) {
-
+      for(let i of this.selected.keys()){
+        if(this.selected.get(i))continue;
+        let t=i,tmin=this.inf;
+        for(let j of this.selected.keys()){
+          if(this.selected.get(j)){
+            if(this.weightMatrix[j][i]<tmin){
+              tmin=this.weightMatrix[j][i];
+              t=j;
+            }
+          }
+        }
+        if(tmin==this.inf){
+          t=45-97;
+        }
+        s+=`<td>${String.fromCharCode(i+97)}(${String.fromCharCode(t+97)},${tmin==this.inf?"inf":tmin})</td></tr>`
+        let min=this.inf;
+        let x=0,y=0;
+        for(let i=0;i<this.n;i++){
+          for(let j=0;j<this.n&&this.selected.get(i);j++){
+            min=this.weightMatrix[i][j];
+            x=i;
+            y=j;
+          }
+        }
+      }
+      this.selected.set(y,true);
+  //    this.connection[y]=x;
+      this.totMinCost+=min;
+      s+=``;
     }
+    s += `</table>`;
+    alert(s);
+    return s;
   }
 }
 
@@ -359,9 +387,9 @@ prims = () => {
   document.getElementById("inputMatrix").value = "0 3 inf inf 6 5\n3 0 1 inf inf 4\ninf 1 0 6 inf 4\ninf inf 6 0 8 inf\n6 inf inf 8 inf 2\n5 4 4 5 2 0";
   document.getElementById("output").style.height = "100%";
   let ob = new Prims();
-  ob.solve();
+  // ob.solve();
   //  alert (0);        
   //    alert (ob.selected.get(0));
-  document.getElementById("resultBox").innerHTML = ob.result;
+  document.getElementById("resultBox").innerHTML = ob.solve()
 
 }
