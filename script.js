@@ -336,8 +336,9 @@ class Prims {
     this.result = "";
     for (let i = 0; i < this.n; i++) {
       this.selected.set(i, false);
-    //  this.connection[i]=0;
+      this.connection.push(0);
     }
+   // alert(this.selected.size);
   }
   solve = () => {
     this.selected.set(0, false);
@@ -346,35 +347,35 @@ class Prims {
     s += `<tr><td>${String.fromCharCode(0 + 97)}(-,-)</td>`;
     var noOfEdges = this.n - 1;
     while (noOfEdges--) {
-      for(let i of this.selected.keys()){
-        if(this.selected.get(i))continue;
-        let t=i,tmin=this.inf;
-        for(let j of this.selected.keys()){
-          if(this.selected.get(j)){
-            if(this.weightMatrix[j][i]<tmin){
-              tmin=this.weightMatrix[j][i];
-              t=j;
+      for (let i of this.selected.keys()) {
+        if (this.selected.get(i)) continue;
+        let t = i, tmin = this.inf;
+        for (let j of this.selected.keys()) {
+          if (this.selected.get(j)) {
+            if (this.weightMatrix[j][i] < tmin) {
+              tmin = this.weightMatrix[j][i];
+              t = j;
             }
           }
         }
-        if(tmin==this.inf){
-          t=45-97;
+        if (tmin == this.inf) {
+          t = 45 - 97;
         }
-        s+=`<td>${String.fromCharCode(i+97)}(${String.fromCharCode(t+97)},${tmin==this.inf?"inf":tmin})</td></tr>`
-        let min=this.inf;
-        let x=0,y=0;
-        for(let i=0;i<this.n;i++){
-          for(let j=0;j<this.n&&this.selected.get(i);j++){
-            min=this.weightMatrix[i][j];
-            x=i;
-            y=j;
+        s += `<td>${String.fromCharCode(i + 97)}(${String.fromCharCode(t + 97)},${tmin == this.inf ? "inf" : tmin})</td></tr>`
+        let min = this.inf;
+        let x = 0, y = 0;
+        for (let i = 0; i < this.n; i++) {
+          for (let j = 0; j < this.n && this.selected.get(i); j++) {
+            min = this.weightMatrix[i][j];
+            x = i;
+            y = j;
           }
         }
       }
-      this.selected.set(y,true);
-  //    this.connection[y]=x;
-      this.totMinCost+=min;
-      s+=``;
+      // this.selected.set(y,true);
+      //  this.connection[y]=x;
+      // this.totMinCost += min;
+      s += `${String.fromCharCode(y+97)}(${String.fromCharCode(x+97)},${this.weightMatrix[x][y]})}`;
     }
     s += `</table>`;
     alert(s);
