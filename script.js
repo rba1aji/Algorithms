@@ -361,26 +361,29 @@ class Prims {
         if (tmin == this.inf) {
           t = 45 - 97;
         }
-        s += `<td>${String.fromCharCode(i + 97)}(${String.fromCharCode(t + 97)},${tmin == this.inf ? "inf" : tmin})</td></tr>`
+        s += `<td>${String.fromCharCode(i + 97)}(${String.fromCharCode(t + 97)},${tmin == this.inf ? "inf" : tmin})</td></tr>`;
         let min = this.inf;
-        let x = 0, y = 0;
+        let x = 0;
+        let y = 0;
         for (let i = 0; i < this.n; i++) {
           for (let j = 0; j < this.n && this.selected.get(i); j++) {
-            min = this.weightMatrix[i][j];
-            x = i;
-            y = j;
+            if(!this.selected.get(j)&&this.weightMatrix[i][j]!=0&&(min>this.weightMatrix[i][j])){
+              min = this.weightMatrix[i][j];
+              x = i;
+              y = j;
           }
         }
       }
-      // this.selected.set(y,true);
-      //  this.connection[y]=x;
-      // this.totMinCost += min;
-      s += `${String.fromCharCode(y+97)}(${String.fromCharCode(x+97)},${this.weightMatrix[x][y]})}`;
+       this.selected.set(y,true);
+       this.connection[y]=x;
+       this.totMinCost += min;
+      s += String.fromCharCode(y+97)+"("+String.fromCharCode(x+97)+","+this.weightMatrix[x][y];
     }
     s += `</table>`;
     alert(s);
     return s;
   }
+}
 }
 
 prims = () => {
