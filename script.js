@@ -377,7 +377,7 @@ class Prims {
        this.selected.set(y,true);
        this.connection[y]=x;
        this.totMinCost += min;
-      s += String.fromCharCode(y+97)+"("+String.fromCharCode(x+97)+","+this.weightMatrix[x][y];
+      s += `${String.fromCharCode(y+97)}(${String.fromCharCode(x+97)},${this.weightMatrix[x][y]})`;
     }
     s += `</table>`;
     alert(s);
