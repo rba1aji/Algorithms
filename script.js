@@ -338,7 +338,7 @@ class Prims {
       this.selected.set(i, false);
       this.connection.push(0);
     }
-   // alert(this.selected.size);
+    // alert(this.selected.size);
   }
   solve = () => {
     this.selected.set(0, true);
@@ -347,7 +347,7 @@ class Prims {
     s += `<tr><td align="left">${String.fromCharCode(0 + 97)}(-,-)</td>`;
     var noOfEdges = this.n - 1;
     while (noOfEdges--) {
-      s+=`<td align="left">&nbsp;`;
+      s += `<td align="left">&nbsp;`;
       for (let i of this.selected.keys()) {
         if (this.selected.get(i)) continue;
         let t = i, tmin = this.inf;
@@ -364,23 +364,23 @@ class Prims {
         }
         s += `${String.fromCharCode(i + 97)}(${String.fromCharCode(t + 97)},${tmin == this.inf ? "inf" : tmin})&nbsp;`;
       }
-      s+=`</td></tr>`;
-        let min = this.inf;
-        let x = 0;
-        let y = 0;
-        for (let i = 0; i < this.n; i++) {
-          for (let j = 0; j < this.n && this.selected.get(i); j++) {
-            if(!this.selected.get(j)&&this.weightMatrix[i][j]!=0&&(min>this.weightMatrix[i][j])){
-              min = this.weightMatrix[i][j];
-              x = i;
-              y = j;
+      s += `</td></tr>`;
+      let min = this.inf;
+      let x = 0;
+      let y = 0;
+      for (let i = 0; i < this.n; i++) {
+        for (let j = 0; j < this.n && this.selected.get(i); j++) {
+          if (!this.selected.get(j) && this.weightMatrix[i][j] != 0 && (min > this.weightMatrix[i][j])) {
+            min = this.weightMatrix[i][j];
+            x = i;
+            y = j;
           }
         }
       }
-       this.selected.set(y,true);
-       this.connection[y]=x;
-       this.totMinCost += min;
-      s += `<td>${String.fromCharCode(y+97)}(${String.fromCharCode(x+97)},${this.weightMatrix[x][y]})</td>`;
+      this.selected.set(y, true);
+      this.connection[y] = x;
+      this.totMinCost += min;
+      s += `<td>${String.fromCharCode(y + 97)}(${String.fromCharCode(x + 97)},${this.weightMatrix[x][y]})</td>`;
     }
     s += `</table>`;
     // alert(s);
