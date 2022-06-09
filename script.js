@@ -343,10 +343,11 @@ class Prims {
   solve = () => {
     this.selected.set(0, false);
     //  alert(0);
-    let s = `<table style=" width:100%; height:40vh; border-collapse: collapse;  overflow-x:auto; ">     <tr> <th>Tree vertices</th>    <th>Remaining vertices</th>   <th>Graph paths</th></tr>`;
-    s += `<tr><td>${String.fromCharCode(0 + 97)}(-,-)</td>`;
+    let s = `<table style=" table-layout:auto; width:auto; height:40vh; border-collapse: collapse;  overflow-x:auto; ">     <tr> <th>Tree vertices</th>    <th>Remaining vertices</th>   <th>Graph paths</th></tr>`;
+    s += `<tr><td align="left">${String.fromCharCode(0 + 97)}(-,-)</td>`;
     var noOfEdges = this.n - 1;
     while (noOfEdges--) {
+      s+=`<td align="left">`;
       for (let i of this.selected.keys()) {
         if (this.selected.get(i)) continue;
         let t = i, tmin = this.inf;
@@ -361,7 +362,9 @@ class Prims {
         if (tmin == this.inf) {
           t = 45 - 97;
         }
-        s += `<td>${String.fromCharCode(i + 97)}(${String.fromCharCode(t + 97)},${tmin == this.inf ? "inf" : tmin})</td></tr>`;
+        s += `${String.fromCharCode(i + 97)}(${String.fromCharCode(t + 97)},${tmin == this.inf ? "inf" : tmin})&nbsp;`;
+      }
+      s+=`</td></tr>`;
         let min = this.inf;
         let x = 0;
         let y = 0;
@@ -377,13 +380,12 @@ class Prims {
        this.selected.set(y,true);
        this.connection[y]=x;
        this.totMinCost += min;
-      s += `${String.fromCharCode(y+97)}(${String.fromCharCode(x+97)},${this.weightMatrix[x][y]})`;
+      s += `<td>${String.fromCharCode(y+97)}(${String.fromCharCode(x+97)},${this.weightMatrix[x][y]})</td>`;
     }
     s += `</table>`;
-    alert(s);
+    // alert(s);
     return s;
   }
-}
 }
 
 prims = () => {
