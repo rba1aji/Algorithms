@@ -341,13 +341,13 @@ class Prims {
    // alert(this.selected.size);
   }
   solve = () => {
-    this.selected.set(0, false);
+    this.selected.set(0, true);
     //  alert(0);
     let s = `<table style=" table-layout:auto; width:auto; height:40vh; border-collapse: collapse;  overflow-x:auto; ">     <tr> <th>Tree vertices</th>    <th>Remaining vertices</th>   <th>Graph paths</th></tr>`;
     s += `<tr><td align="left">${String.fromCharCode(0 + 97)}(-,-)</td>`;
     var noOfEdges = this.n - 1;
     while (noOfEdges--) {
-      s+=`<td align="left">`;
+      s+=`<td align="left">&nbsp;`;
       for (let i of this.selected.keys()) {
         if (this.selected.get(i)) continue;
         let t = i, tmin = this.inf;
