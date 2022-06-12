@@ -6,6 +6,7 @@ ft:
 <li>Knapsack</li>
 <li>Warshall's</li> 
 <li>Floyd's</li>
+<li>Prim's</li>
 </ul>
 references i used: https://youtu.be/ANgJC9_MQuA and textbook of DAA
 
