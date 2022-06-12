@@ -1,3 +1,5 @@
+## Tech Stack
+  HTML, Vanilla Javascript 
 # Algorithms
 ft: 
 <ul>
