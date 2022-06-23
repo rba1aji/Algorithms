@@ -42,7 +42,8 @@
         </tr>
       </table>
       <br/>
-      <input type="button" onclick="knapsack()" value="Find Knapsack Solution" id="knapsackButton" />
+      <button onClick="knapsackDemoInput()">Demo input</button>
+      <input type="button" onClick="knapsack()" value="Find Knapsack Solution" id="knapsackButton" />
     </div>
     
 <style>
@@ -81,10 +82,11 @@
         <textarea id="inputMatrix" rows="4" width:50vw; name="input" style="font-family: Arial, sans-serif; font-size:100%; padding:4%;" required></textarea> 
        <br/>
        <br/>
+       <span id="demoInputBtn"></span>
        <span id="warshallsButton"></span>
        <span id="floydsButton"></span>
        <span id="primsButton"></span>
-       <br/><br/>
+       <br/>
        </div>
       </form>
        

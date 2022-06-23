@@ -24,6 +24,7 @@ selectAlgo = () => {
     document.getElementById("inputMatrixType").innerHTML = "adjacency";
     document.getElementById("infinityNote").innerHTML = "";
     document.getElementById("warshallsButton").innerHTML = '<input type="button" value="Find Warshalls Solution" onclick="warshalls()"></input>';
+    document.getElementById("demoInputBtn").innerHTML="<input type='button' onClick='warshallsDemoInput()' value='Demo input'></input>";
     document.getElementById("floydsButton").innerHTML = "";
     document.getElementById("primsButton").innerHTML = "";
 
@@ -36,6 +37,7 @@ selectAlgo = () => {
     document.getElementById("inputMatrixType").innerHTML = "weight";
     document.getElementById("infinityNote").innerHTML = "<br/>note: enter inf for &#8734;";
     document.getElementById("floydsButton").innerHTML = '<input type="button" value="Find Floyds Solution" onclick="floyds()"></input>';
+    document.getElementById("demoInputBtn").innerHTML="<input type='button' onClick='floydsDemoInput()' value='Demo input'></input>";
     document.getElementById("warshallsButton").innerHTML = "";
     document.getElementById("primsButton").innerHTML = "";
 
@@ -53,6 +55,7 @@ selectAlgo = () => {
     document.getElementById("inputMatrixType").innerHTML = "weight";
     document.getElementById("infinityNote").innerHTML = "<br/>note: enter inf for &#8734;";
     document.getElementById("primsButton").innerHTML = '<input type="button" value="Find Prims Solution" onclick="prims()"></input>';
+  document.getElementById("demoInputBtn").innerHTML="<input type='button' onClick='primsDemoInput()' value='Demo input'></input>";
     document.getElementById("warshallsButton").innerHTML = "";
     document.getElementById("floydsButton").innerHTML = "";
     document.getElementById("outputDescription").innerHTML = "Application of Prim's algorithm:";
@@ -146,7 +149,7 @@ knapsack = () => {
   /*  document.getElementById("item").value="1\n2\n3\n4";
     document.getElementById("weight").value="2\n1\n3\n2";
     document.getElementById("value").value="12\n10\n20\n15";
-    //document.getElementById("capacity").value="5";*/
+    document.getElementById("capacity").value="5";*/
 
 
   document.getElementById("output").style.height = "100%";
@@ -275,6 +278,8 @@ printMatrix = (arr) => {
 readAdjacencyMatrix = () => {
   let adjacencyMatrixString = document.getElementById("inputMatrix").value;
   const adjacencyMatrix1D = adjacencyMatrixString.replaceAll("\n", " ").replaceAll(/ +/g, " ").split(" ");
+  if (adjacencyMatrix1D[0] == '') adjacencyMatrix1D.shift();
+  if (adjacencyMatrix1D[adjacencyMatrix1D.length - 1] == '') adjacencyMatrix1D.pop();
   let n = Math.sqrt(adjacencyMatrix1D.length);
   let adjacencyMatrix = [];
   let k = 0;
@@ -283,7 +288,7 @@ readAdjacencyMatrix = () => {
     for (let j = 0; j < n; j++) {
       let temp = parseInt(adjacencyMatrix1D[k++]);
       if (Number.isNaN(temp) || temp > 1) {
-        alert("ENTER VALID ADJACENCY MATRIX\ntip:\nadjacency matrix can only contain 0s and 1s\nadjacency matrix must be square matrix\ntry removing white spaces after last element");
+        alert("ENTER VALID ADJACENCY MATRIX\nadjacency matrix can only contain 0s and 1s\nadjacency matrix must be square matrix");
         document.getElementById("output").style.height = "0";
         return;
       }
@@ -298,6 +303,8 @@ readWeightMatrix = () => {
   let weightMatrixString = document.getElementById("inputMatrix").value;
   const weightMatrix1D = weightMatrixString.replaceAll("\n", " ").replaceAll(/ +/g, " ").split(" ");
   //last character need to remove ws
+  if (weightMatrix1D[0] == '') weightMatrix1D.shift();
+  if (weightMatrix1D[weightMatrix1D.length - 1] == '') weightMatrix1D.pop();
   let n = Math.sqrt(weightMatrix1D.length);
   let weightMatrix = [];
   let k = 0;
@@ -308,7 +315,7 @@ readWeightMatrix = () => {
       else {
         let temp = parseInt(weightMatrix1D[k]);
         if (Number.isNaN(temp)) {
-          alert("ENTER VALID WEIGHT MATRIX\ntip:\nmake sure you put inf for infinity\nweight matrix must be square matrix\ntry removing white spaces after last element");
+          alert("ENTER VALID WEIGHT MATRIX\nmake sure you put inf for infinity\nweight matrix must be square matrix");
           document.getElementById("output").style.height = "0";
           return;
         }
@@ -390,7 +397,7 @@ class Prims {
 
 prims = () => {
   //debugg input
-  document.getElementById("inputMatrix").value = "0 3 inf inf 6 5\n3 0 1 inf inf 4\ninf 1 0 6 inf 4\ninf inf 6 0 8 inf\n6 inf inf 8 inf 2\n5 4 4 5 2 0";
+  //document.getElementById("inputMatrix").value = "0 3 inf inf 6 5\n3 0 1 inf inf 4\ninf 1 0 6 inf 4\ninf inf 6 0 8 inf\n6 inf inf 8 inf 2\n5 4 4 5 2 0";
   document.getElementById("output").style.height = "100%";
   let ob = new Prims();
   // ob.solve();
@@ -399,3 +406,20 @@ prims = () => {
   document.getElementById("resultBox").innerHTML = ob.solve()
 
 }
+
+
+function knapsackDemoInput(){
+    document.getElementById("item").value="1\n2\n3\n4";
+    document.getElementById("weight").value="2\n1\n3\n2";
+    document.getElementById("value").value="12\n10\n20\n15";
+    document.getElementById("capacity").value="5";
+  }
+function warshallsDemoInput(){
+  document.getElementById("inputMatrix").value="0 1 0 0\n0 0 0 1\n0 0 0 0\n1 0 1 0";
+  }
+function floydsDemoInput(){
+  document.getElementById("inputMatrix").value="0 inf 3 inf\n2 0 inf inf\ninf 7 0 1\n6 inf inf 0";
+  }
+function primsDemoInput(){
+  document.getElementById("inputMatrix").value="0 3 inf inf 6 5\n3 0 1 inf inf 4\ninf 1 0 6 inf 4\ninf inf 6 0 8 inf\n6 inf inf 8 inf 2\n5 4 4 5 2 0";
+  }
