@@ -1,6 +1,6 @@
 ## Tech Stack
   HTML, Vanilla Javascript 
-# Algorithms
+# Implementation of graph algorithms
 ft: 
 <ul>
 <li>Knapsack</li>
